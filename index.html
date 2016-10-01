@@ -4,8 +4,10 @@
 <script src="angularControllers/outerController.js"></script>
 <body>
  Penis
-<div ng-app="treeOfKnowledge" ng-controller="outerController as vm">
-    {{vm.topic.name}}
+ <div ng-app="treeOfKnowledge" ng-controller="outerController as vm">
+     <div  ng-if="vm.topic != undefined" ng-init="topic=vm.topic" ng-include="'topic.html'">
+         
+     </div>
 <!--    <table ng-init="penis=['a','b','c','d']">
         <tr ng-repeat="item in penis">
             <td>{{vm.topic.name}}</td>
