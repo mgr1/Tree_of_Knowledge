@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="angularControllers/outerController.js"></script>
 <body>
-
-<div ng-app="">
-    <table ng-init="penis=['a','b','c','d']">
+ Penis
+<div ng-app="treeOfKnowledge" ng-controller="outerController as vm">
+    {{vm.topic.name}}
+<!--    <table ng-init="penis=['a','b','c','d']">
         <tr ng-repeat="item in penis">
-            <td>{{item}}</td>
+            <td>{{vm.topic.name}}</td>
         </tr>
-    </table>
+    </table>-->
 </div>
 
 
