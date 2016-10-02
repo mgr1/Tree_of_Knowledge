@@ -1,14 +1,49 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<table id="Topics" border="1" align="center" ng-init="console.log(vm)">
-    <th colspan="2">{{topic.name}}</th>
-    <tr>
-        <td ng-repeat="x in topic.subTopics">
-            <span ng-include="'topic.html'"  ng-init="topic=x">HERE</span>
+<!--    <canvas id="lineCanvas" style="width:1920; height:964">Your browser sucks and cannot display canvas objects.</canvas>
+    <script>
+        var canvas = document.getElementById('lineCanvas');
+        var ctx = canvas.getContext('2d');
+        ctx.moveTo(0, 0);
+        ctx.lineTo(1920, 964);
+        ctx.stroke();
+    </script>-->
+<!--<div id="canvasDiv" style="height: 20px"><canvas id="lineCanvas" width="20" height="20" style="z-index:1000; position: absolute">Your browser sucks and cannot display canvas objects.</canvas>
+<script>
+                    var canvas = document.getElementById('lineCanvas');
+                    var ctx = canvas.getContext('2d');
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(20, 20);
+                    ctx.endPath();
+                    ctx.stroke();
+                    console.log('hello there');
+</script>-->
+<table id="Topics" border="1" align="left">
+    <th id="header" colspan="2">{{topic.name}}</th>
+    <tr id="canvasRow">
+        <td>
+            <div id="canvasDiv" style="height: 20px"><canvas id="lineCanvas" width="20" height="20" style="z-index:1000; position: absolute">Your browser sucks and cannot display canvas objects.</canvas>
+               <script>
+                    var canvas = document.getElementById('lineCanvas');
+                    var ctx = canvas.getContext('2d');
+                    var startingXLocation = document.getElementById('header').getBoundingClientRect().left;
+                    var endingXLocation = document.getElementById('header').getBoundingClientRect().right;
+                    var startingYLocation = document.getElementById('canvasDiv').getBoundingClientRect().top;
+                    var endingYLocation = document.getElementById('canvasDiv').getBoundingClientRect().bottom;
+                    canvas.width = document.getElementById('header').getBoundingClientRect().width; 
+                    canvas.height = document.getElementById('canvasDiv').getBoundingClientRect().height;
+                    ctx.beginPath()
+                    ctx.moveTo(startingXLocation, startingYLocation);
+                    ctx.lineTo(endingXLocation, endingYLocation);
+                    ctx;endPath();
+                    ctx.stroke();
+                    console.log('hello there')
+                </script></div>
         </td>
     </tr>
+    <tr>
+        <td ng-repeat="x in topic.subTopics">
+            <span ng-include="'topic.html'"  ng-init="topic = x">HERE</span>
+        </td>
+    </tr>
+
 </table>
