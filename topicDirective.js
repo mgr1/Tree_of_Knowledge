@@ -2,7 +2,7 @@ angular.module('treeOfKnowledge').directive('topicDir', function($compile) {
     return {
         restrict: 'E',
 //        template: '<h1>penis</h1>'
-        replace: 'true',
+//        replace: 'true',
         templateUrl: 'topic.html',
         controller: 'topicController',
         controllerAs: 'vm',
