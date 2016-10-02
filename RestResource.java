@@ -6,18 +6,21 @@
 package restapi;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -48,7 +51,7 @@ public class RestResource {
     public String getJson() {
         try {
             System.out.println();
-            return readFile("C:\\Users\\matth\\Documents\\NetBeansProjects\\TreeOfKNOWLEDGE\\src\\java\\restapi\\treeJson.json");
+            return readFile("C:\\Users\\Zach\\Desktop\\treeJson.txt");
         } catch (IOException ex) {
             ex.printStackTrace();
             return "ERROR";
@@ -60,16 +63,25 @@ public class RestResource {
      *
      * @param content representation for the resource
      */
-    @PUT
+    @POST
+    @Path("putJson")
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
+        writeFile("C:\\Users\\Zach\\Desktop\\treeJson.txt", content);
     }
 
-    @GET
-    @Path("test")
 //    @Produces(MediaType.APPLICATION_JSON)
     public String test() {
         return "More";
+    }
+
+    static void writeFile(String filePath, String content) {
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(filePath), "utf-8"))) {
+            writer.write(content);
+        } catch (IOException ex) {
+            Logger.getLogger(RestResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     static String readFile(String fileName) throws IOException {
@@ -91,7 +103,5 @@ public class RestResource {
 
     public static void main(String[] args) {
         RestResource r = new RestResource();
-
-        System.out.print(r.getJson());
     }
 }
