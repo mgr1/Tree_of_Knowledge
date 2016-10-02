@@ -47,3 +47,12 @@
     </tr>
 
 </table>
+
+<table border="1" align="center">
+    <th colspan="2">{{vm.topic.name}}</th>
+    <tr>
+        <td ng-repeat="x in vm.topic.subTopics track by $index">
+            <topic-dir topic="x"></topic-dir>
+        </td>
+    </tr>
+</table>
