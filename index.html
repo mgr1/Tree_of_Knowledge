@@ -1,25 +1,46 @@
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<script src="angularControllers/outerController.js"></script>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
 
-<script src="angularDirectives/topicDirective.js"></script>
-<script src="angularControllers/topicController.js"></script>
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!--angularJS-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+        <!--UI Bootstrap-->
+        <script src="uiBootstrap/ui-bootstrap-custom-tpls-2.1.4.min.js"></script>
+
+        <script src="angularControllers/outerController.js"></script>
+
+        <script src="angularDirectives/topicDirective.js"></script>
+        <script src="angularControllers/topicController.js"></script>
+
+    </head>
 
 
-<body>
- <div ng-app="treeOfKnowledge" ng-controller="outerController as vm">
-     <!--<div   ng-include="'topic.html'">-->
-     <topic-dir ng-if="vm.topic != undefined" topic="vm.topic"></topic-dir>
-     <!--</div>-->
-<!--    <table ng-init="penis=['a','b','c','d']">
-        <tr ng-repeat="item in penis">
-            <td>{{vm.topic.name}}</td>
-        </tr>
-    </table>-->
-</div>
 
-
-</body>
+    <body  style="text-align: center; vertical-align: middle" ng-app="treeOfKnowledge" ng-controller="outerController as vm">
+        <div class="page-header">
+            <h1>Tree of Knowledge</h1>
+        </div>
+        <div  style="text-align: center; padding: 30px 50px 15px 50px">
+            <topic-dir ng-if="vm.topic != undefined" topic="vm.topic" editable="vm.editable" nested="false"></topic-dir>
+        </div>
+        <div ng-if="!vm.editable" style="width: 100%; text-align: center">
+            <button type="button" class="btn btn-warning" ng-click="vm.editable = true">Edit</button>
+        </div>
+        <div ng-if="vm.editable" style="width: 100%; text-align: center">
+            <button type="button" class="btn btn-success" ng-click="vm.saveChanges()">Save Changes</button>
+            <button type="button" class="btn btn-danger" ng-click="vm.editable = false">Cancel</button>
+        </div>
+    </body>
 </html>

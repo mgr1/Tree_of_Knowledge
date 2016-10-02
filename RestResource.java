@@ -6,21 +6,21 @@
 package restapi;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Scanner;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -50,8 +50,7 @@ public class RestResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson() {
         try {
-            System.out.println();
-            return readFile("C:\\Users\\Zach\\Desktop\\treeJson.txt");
+            return readFile("C:\\Users\\Mark_2.Mark-PC\\Desktop\\treeJson.txt");
         } catch (IOException ex) {
             ex.printStackTrace();
             return "ERROR";
@@ -64,23 +63,30 @@ public class RestResource {
      * @param content representation for the resource
      */
     @POST
-    @Path("putJson")
+    @Path("postJson")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-        writeFile("C:\\Users\\Zach\\Desktop\\treeJson.txt", content);
+    public void postJson(String content) {
+        writeFile(content,"C:\\Users\\Mark_2.Mark-PC\\Desktop\\treeJson.txt");
     }
 
+    @GET
+    @Path("test")
 //    @Produces(MediaType.APPLICATION_JSON)
     public String test() {
         return "More";
     }
 
-    static void writeFile(String filePath, String content) {
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(filePath), "utf-8"))) {
-            writer.write(content);
-        } catch (IOException ex) {
-            Logger.getLogger(RestResource.class.getName()).log(Level.SEVERE, null, ex);
+    static void writeFile(String content, String filePath) {
+        try {
+            File newTextFile = new File(filePath);
+
+            FileWriter fw = new FileWriter(newTextFile);
+            fw.write(content);
+            fw.close();
+
+        } catch (IOException iox) {
+            //do stuff with exception
+            iox.printStackTrace();
         }
     }
 

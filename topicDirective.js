@@ -8,7 +8,11 @@ angular.module('treeOfKnowledge').directive('topicDir', function($compile) {
         controllerAs: 'vm',
         bindToController: 'true',
         scope: {
-            topic: '='
+            topic: '=',
+            editable: '=',
+            onDelete: '&',
+            prioritize: '&',
+            nested: '='
         },
         //lol wut
         compile: function(tElement, tAttr) {
@@ -25,3 +29,4 @@ angular.module('treeOfKnowledge').directive('topicDir', function($compile) {
         }
     };
 });
+
