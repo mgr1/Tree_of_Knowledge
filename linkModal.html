@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Useful Links</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <ul>
+        <li ng-repeat="link in vm.topic.links">
+            <a href="{{link}}">{{link}}</a>
+            <button ng-if="editable" ng-click="vm.topic.links.splice($index,1)">Delete Link</button>
+        </li>
+    </ul>
+    <input ng-if="editable" ng-init="vm.newLink=''" ng-model="vm.newLink" placeholder="Type new link here">
+    <button ng-if="editable" ng-click="vm.topic.links.push(vm.newLink); vm.newLink=''">Add Link</button>
+</div>
+<!--<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="$uibModalInstance.cancel()">Cancel</button>
+</div>-->
