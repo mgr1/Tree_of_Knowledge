@@ -1,0 +1,13 @@
+{
+    "elements": {
+        "topic-dir": {
+            "attributes": {
+                "on-delete": {},
+                "editable": {},
+                "tree": {},
+                "topic": {}
+            }
+        }
+    },
+    "attributes": {}
+}
