@@ -1,8 +1,6 @@
 angular.module('treeOfKnowledge').directive('topicDir', function($compile) {
     return {
         restrict: 'E',
-//        template: '<h1>penis</h1>'
-//        replace: 'true',
         templateUrl: 'topic.html',
         controller: 'topicController',
         controllerAs: 'vm',
@@ -10,7 +8,7 @@ angular.module('treeOfKnowledge').directive('topicDir', function($compile) {
         scope: {
             topic: '='
         },
-        //lol wut
+
         compile: function(tElement, tAttr) {
             var contents = tElement.contents().remove();
             var compiledContents;
